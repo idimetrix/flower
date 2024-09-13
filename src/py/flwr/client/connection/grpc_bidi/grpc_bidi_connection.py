@@ -22,7 +22,7 @@ from logging import DEBUG, ERROR
 from pathlib import Path
 from queue import Queue
 from types import TracebackType
-from typing import Iterator, cast
+from typing import cast
 
 from cryptography.hazmat.primitives.asymmetric import ec
 
