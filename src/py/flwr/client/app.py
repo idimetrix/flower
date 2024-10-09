@@ -57,7 +57,7 @@ from flwr.server.superlink.linkstate.utils import generate_rand_int_from_bytes
 
 from .clientapp.clientappio_servicer import ClientAppInputs, ClientAppIoServicer
 from .connection import (
-    Connection,
+    FleetConnection,
     GrpcAdapterFleetConnection,
     GrpcBidiFleetConnection,
     GrpcRereFleetConnection,
@@ -682,7 +682,7 @@ def start_numpy_client(
 
 def _init_connection(
     transport: Optional[str], server_address: str
-) -> tuple[type[Connection], str, type[Exception]]:
+) -> tuple[type[FleetConnection], str, type[Exception]]:
     # Parse IP address
     parsed_address = parse_address(server_address)
     if not parsed_address:
@@ -695,7 +695,7 @@ def _init_connection(
         transport = TRANSPORT_TYPE_GRPC_BIDI
 
     # Use grpc-rere/grpc-adapter/rest/grpc-bidi transport layer
-    connection: Optional[type[Connection]] = None
+    connection: Optional[type[FleetConnection]] = None
     if transport == TRANSPORT_TYPE_REST:
         try:
             from requests.exceptions import RequestException
